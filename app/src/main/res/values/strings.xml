@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">imdb</string>
+
+    <string name="onboarding_slide1_title"></string>
+    <string name="onboarding_slide1_subtitle"></string>
+    <string name="onboarding_slide1_desc"></string>
+
+    <string name="onboarding_slide2_title">Information and Trailers</string>
+    <string name="onboarding_slide2_subtitle">Get information about any movie and see trailer</string>
+    <string name="onboarding_slide2_desc">Learn about each movie and watch the previews of the movies you like.</string>
+
+    <string name="onboarding_slide3_title">Save your favorite movies</string>
+    <string name="onboarding_slide3_subtitle">Save movies</string>
+    <string name="onboarding_slide3_desc">Save the movies you like to watch with your friends in the future.</string>
+
+    <string name="next">Next</string>
+    <string name="skip">Skip</string>
+    <string name="get_started">Get started</string>
+</resources>
