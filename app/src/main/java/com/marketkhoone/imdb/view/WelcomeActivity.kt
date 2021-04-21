@@ -29,9 +29,6 @@ class WelcomeActivity : AppCompatActivity() {
             .build()
             .inject(this)
 
-        ////// ezafe
-        prefs.isFirstTimeLaunch = true
-
         if(!prefs.isFirstTimeLaunch){
             navigateToMainActivity()
         }
