@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 @Module
 open class ApiModule {
-    private val BASE_URL = "https://imdb-api.com/en/API"
+    private val BASE_URL = "https://imdb-api.com/en/API/"
 
     @Provides
     fun provideImdbApi(): ImdbApi {

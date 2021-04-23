@@ -48,11 +48,11 @@
                 android:background="@color/colorPrimary">
 
                 <ImageButton
-                    android:id="@+id/menu"
+                    android:id="@+id/menuButton"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:layout_marginStart="20dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
                     android:background="@drawable/shape_menu"
                     android:gravity="center"
                     android:src="@drawable/ic_burger_list_menu_navigation"
@@ -61,11 +61,25 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
-                    android:id="@+id/search"
+                    android:id="@+id/backButton"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:background="@drawable/shape_menu"
+                    android:visibility="gone"
+                    android:gravity="center"
+                    android:src="@drawable/ic_arrow_back_direction_left_right"
+                    android:tint="@color/title"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageButton
+                    android:id="@+id/searchButton"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="18dp"
                     android:background="@drawable/shape_menu"
                     android:gravity="center"
                     android:src="@drawable/ic_find_search_seo_view_zoom"
@@ -73,17 +87,29 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
+                <TextView
+                    android:id="@+id/mainTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="56dp"
+                    android:layout_marginStart="86dp"
+                    android:layout_marginTop="18dp"
+                    android:gravity="center"
+                    android:text="In Theaters"
+                    android:textColor="@color/title"
+                    android:textSize="22dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
                 <FrameLayout
                     android:id="@+id/container"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginTop="12dp"
+                    android:layout_marginTop="86dp"
                     android:background="@color/colorPrimary"
-                    android:padding="?attr/listPreferredItemPaddingRight"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/menu" />
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>

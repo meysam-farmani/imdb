@@ -1,13 +1,14 @@
+package com.marketkhoone.imdb.model
+
 import android.os.Parcel
 import android.os.Parcelable
-import com.google.gson.annotations.SerializedName
 
-data class MovieData(
-	val items : List<Items>?,
+data class TopMovie(
+	val items : List<TopMovieItems>?,
 	val errorMessage : String?
 ): Parcelable {
 	constructor(parcel: Parcel) : this(
-		parcel.readParcelable(Items::class.java.classLoader),
+		parcel.readParcelable(TopMovieItems::class.java.classLoader),
 		parcel.readString()
 	) {
 	}
@@ -21,12 +22,12 @@ data class MovieData(
 		return 0
 	}
 
-	companion object CREATOR : Parcelable.Creator<Items> {
-		override fun createFromParcel(parcel: Parcel): Items {
-			return Items(parcel)
+	companion object CREATOR : Parcelable.Creator<TopMovie> {
+		override fun createFromParcel(parcel: Parcel): TopMovie {
+			return TopMovie(parcel)
 		}
 
-		override fun newArray(size: Int): Array<Items?> {
+		override fun newArray(size: Int): Array<TopMovie?> {
 			return arrayOfNulls(size)
 		}
 	}

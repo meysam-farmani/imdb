@@ -9,17 +9,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-<!--        <androidx.cardview.widget.CardView-->
-<!--            android:id="@+id/duo_view_option_main"-->
-<!--            android:layout_width="0dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="?attr/selectableItemBackground"-->
-<!--            app:cardCornerRadius="12dp"-->
-<!--            app:layout_constraintEnd_toStartOf="@+id/view"-->
-<!--            app:layout_constraintStart_toStartOf="parent"-->
-<!--            app:layout_constraintTop_toTopOf="parent">-->
-
-
             <RelativeLayout
                 android:id="@+id/relativeLayout"
                 android:layout_width="0dp"
@@ -56,7 +45,7 @@
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_centerVertical="true"
-                        android:layout_marginLeft="16dp"
+                        android:layout_marginLeft="0dp"
                         android:src="@drawable/ic_find_search_seo_view_zoom"
                         app:tint="#ffffff" />
 
@@ -68,14 +57,12 @@
                         android:layout_marginLeft="16dp"
                         android:layout_toRightOf="@+id/duo_view_option_selector"
                         android:gravity="center_vertical|start"
-                        android:textAppearance="?android:attr/textAppearanceLarge"
                         android:text="@string/app_name"
                         android:textColor="@android:color/white"
+                        android:textSize="16dp"
                         android:textStyle="bold" />
                 </RelativeLayout>
             </RelativeLayout>
-<!--        </androidx.cardview.widget.CardView>-->
-
         <View
             android:id="@+id/view"
             android:layout_width="1dp"

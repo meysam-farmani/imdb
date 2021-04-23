@@ -26,6 +26,18 @@
         <item>Most Popular,ic_popular</item>
         <item>Box Office,ic_box_office</item>
     </array>
+
+    <array name="apiKeys">
+        <item>k_gnkhy5md</item>
+        <item>k_idj95j2b</item>
+        <item>k_5po4y5rf</item>
+        <item>k_kgiss3zd</item>
+    </array>
+
+
+    <string name="in_theaters">Now Showing</string>
+    <string name="coming_soon">Coming Soon</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="newMovieItem"
+            type="com.marketkhoone.imdb.model.NewMovieItems" />
+
+        <variable
+            name="trailer"
+            type="com.marketkhoone.imdb.model.ImdbTrailer" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/background"
+        tools:context=".view.MovieBookingFragment">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/shadowImageMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_marginStart="26dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/shape_menu"
+                    app:layout_constraintDimensionRatio="0.675"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/imageMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="180dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="12dp"
+                    android:imageUrl="@{newMovieItem.image}"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintDimensionRatio="0.675"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearanceOverlay="@style/pagerCardsCorner"
+                    app:srcCompat="@drawable/test2" />
+
+                <TextView
+                    android:id="@+id/nameMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="52dp"
+                    android:layout_marginEnd="18dp"
+                    android:text="@{newMovieItem.title}"
+                    android:textColor="@color/title"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/shadowImageMovieBooking"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/runtimeMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="18dp"
+                    android:text="@{newMovieItem.runtimeStr}"
+                    android:textColor="@color/text2"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/shadowImageMovieBooking"
+                    app:layout_constraintTop_toBottomOf="@+id/nameMovieBooking" />
+
+                <TextView
+                    android:id="@+id/releaseStateMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="20dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginEnd="18dp"
+                    android:text="@{newMovieItem.releaseState}"
+                    android:textColor="@color/text2"
+                    android:textSize="12dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/shadowImageMovieBooking"
+                    app:layout_constraintTop_toBottomOf="@+id/runtimeMovieBooking" />
+
+                <com.willy.ratingbar.ScaleRatingBar
+                    android:id="@+id/simpleRatingBar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:gravity="center"
+                    app:layout_constraintStart_toEndOf="@+id/shadowImageMovieBooking"
+                    app:layout_constraintTop_toBottomOf="@+id/releaseStateMovieBooking"
+                    app:srb_clearRatingEnabled="true"
+                    app:srb_clickable="false"
+                    app:srb_drawableEmpty="@drawable/ic_star_empty"
+                    app:srb_drawableFilled="@drawable/ic_star_filled"
+                    app:srb_isIndicator="false"
+                    app:srb_minimumStars="0"
+                    app:srb_numStars="5"
+                    app:srb_rating="0"
+                    app:srb_scrollable="false"
+                    app:srb_starHeight="12dp"
+                    app:srb_starPadding="2dp"
+                    app:srb_starWidth="12dp"
+                    app:srb_stepSize="0.5" />
+
+                <TextView
+                    android:id="@+id/plotMovieBookingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Storyline"
+                    android:textColor="@color/title"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/shadowImageMovieBooking" />
+
+                <TextView
+                    android:id="@+id/plotMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:lineSpacingExtra="6dp"
+                    android:inputType="textMultiLine"
+                    android:text="@{newMovieItem.plot}"
+                    android:textColor="@color/text2"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/plotMovieBookingTitle" />
+
+                <TextView
+                    android:id="@+id/directorsMovieBookingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Directors"
+                    android:textColor="@color/title"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/plotMovieBooking" />
+
+                <TextView
+                    android:id="@+id/directorsMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:lineSpacingExtra="6dp"
+                    android:inputType="textMultiLine"
+                    android:directorListToString="@{newMovieItem.directorList}"
+                    android:textColor="@color/text2"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/directorsMovieBookingTitle" />
+
+                <TextView
+                    android:id="@+id/genresMovieBookingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Genres"
+                    android:textColor="@color/title"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/directorsMovieBooking" />
+
+                <TextView
+                    android:id="@+id/genresMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:layout_marginEnd="18dp"
+                    android:lineSpacingExtra="6dp"
+                    android:inputType="textMultiLine"
+                    android:genreListToString="@{newMovieItem.genreList}"
+                    android:textColor="@color/text2"
+                    android:textSize="14dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/genresMovieBookingTitle" />
+
+                <TextView
+                    android:id="@+id/trailerMovieBookingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Trailer"
+                    android:textColor="@color/title"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/genresMovieBooking" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/trailerMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/trailerMovieBookingTitle">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/image"
+                        android:layout_width="0dp"
+                        android:layout_height="0dp"
+                        android:layout_centerHorizontal="true"
+                        android:layout_marginStart="18dp"
+                        android:layout_marginEnd="18dp"
+                        android:imageUrl="@{trailer.thumbnailUrl}"
+                        android:scaleType="centerCrop"
+                        app:layout_constraintDimensionRatio="1.78"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:shapeAppearanceOverlay="@style/pagerCardsCorner"
+                        app:srcCompat="@drawable/test3" />
+
+                    <ImageView
+                        android:layout_width="60dp"
+                        android:layout_height="60dp"
+                        android:src="@drawable/ic_play"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <TextView
+                    android:id="@+id/castMovieBookingTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="32dp"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="18dp"
+                    android:text="Cast"
+                    android:textColor="@color/title"
+                    android:textSize="22dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/trailerMovieBooking" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/actorListMovieBooking"
+                    android:layout_width="0dp"
+                    android:layout_height="202dp"
+                    android:layout_marginTop="18dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    android:paddingLeft="18dp"
+                    android:paddingRight="18dp"
+                    android:clipToPadding="false"
+                    app:layout_constraintTop_toBottomOf="@+id/castMovieBookingTitle" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </ScrollView>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

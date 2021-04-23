@@ -7,9 +7,11 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="colorAccent">@color/main</color>
 
     <color name="colorPrimary">#201f28</color>
 
+    <color name="mainTransparent">#50ffaf2e</color>
     <color name="main">#ffaf2e</color>
     <color name="background">#201f28</color>
     <color name="background2">#2a2937</color>
@@ -17,5 +19,9 @@
     <color name="text2">#767288</color>
     <color name="text3">#6b687d</color>
     <color name="title">#ffffff</color>
+
+    <color name="text_enabled">#ffaf2e</color>
+    <color name="text_disabled">#767288</color>
+    <color name="transparent">#00000000</color>
 
 </resources>

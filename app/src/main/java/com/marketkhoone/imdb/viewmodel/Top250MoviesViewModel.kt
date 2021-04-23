@@ -1,6 +1,6 @@
 package com.marketkhoone.imdb.viewmodel
 
-import MovieData
+import com.marketkhoone.imdb.model.NewMovie
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -22,7 +22,7 @@ class Top250MoviesViewModel(application: Application): AndroidViewModel(applicat
         iniected = true
     }
 
-    val top250Movies by lazy { MutableLiveData<MovieData>() }
+    val movieDataList by lazy { MutableLiveData<NewMovie>() }
     val loadError by lazy { MutableLiveData<Boolean>() }
     val loading by lazy { MutableLiveData<Boolean>() }
 
@@ -54,24 +54,23 @@ class Top250MoviesViewModel(application: Application): AndroidViewModel(applicat
         getTop250Movies(apiKey)
     }
 
-
     private fun getTop250Movies(apiKey: String){
         disposable.add(
             apiService.getTop250Movies(apiKey)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<MovieData>(){
-                    override fun onSuccess(movieData: MovieData) {
+                .subscribeWith(object: DisposableSingleObserver<NewMovie>(){
+                    override fun onSuccess(newMovie: NewMovie) {
                         loadError.value = false
-                        top250Movies.value = movieData
+                        movieDataList.value = newMovie
                         loading.value = false
                     }
 
                     override fun onError(e: Throwable) {
-                            e.printStackTrace()
-                            loading.value = false
-                            top250Movies.value = null
-                            loadError.value = true
+                        e.printStackTrace()
+                        loading.value = false
+                        movieDataList.value = null
+                        loadError.value = true
                     }
                 })
         )

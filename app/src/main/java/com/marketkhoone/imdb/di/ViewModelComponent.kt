@@ -1,8 +1,9 @@
 package com.marketkhoone.imdb.di
 
+import com.marketkhoone.imdb.view.VideoActivity
 import com.marketkhoone.imdb.view.WelcomeActivity
 import com.marketkhoone.imdb.view.welcome.onboarding.customView.OnBoardingView
-import com.marketkhoone.imdb.viewmodel.Top250MoviesViewModel
+import com.marketkhoone.imdb.viewmodel.*
 import dagger.Component
 import javax.inject.Singleton
 
@@ -12,5 +13,11 @@ interface ViewModelComponent {
 
     fun inject(viewModel: OnBoardingView)
     fun inject(viewModel: WelcomeActivity)
+    fun inject(viewModel: VideoActivity)
     fun inject(viewModel: Top250MoviesViewModel)
+    fun inject(viewModel: InTheatersViewModel)
+    fun inject(viewModel: ComingSoonViewModel)
+    fun inject(viewModel: FullCastViewModel)
+    fun inject(viewModel: YouTubeTrailerViewModel)
+    fun inject(viewModel: TrailerViewModel)
 }
