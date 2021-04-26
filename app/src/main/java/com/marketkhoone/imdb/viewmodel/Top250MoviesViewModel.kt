@@ -1,6 +1,6 @@
 package com.marketkhoone.imdb.viewmodel
 
-import com.marketkhoone.imdb.model.NewMovie
+import com.marketkhoone.imdb.model.entity.NewMovie
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -9,6 +9,7 @@ import com.marketkhoone.imdb.di.CONTEXT_APP
 import com.marketkhoone.imdb.di.DaggerViewModelComponent
 import com.marketkhoone.imdb.di.TypeOfContext
 import com.marketkhoone.imdb.model.ImdbApiService
+import com.marketkhoone.imdb.model.entity.TopMovie
 import com.marketkhoone.imdb.util.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
@@ -22,7 +23,7 @@ class Top250MoviesViewModel(application: Application): AndroidViewModel(applicat
         iniected = true
     }
 
-    val movieDataList by lazy { MutableLiveData<NewMovie>() }
+    val movieDataList by lazy { MutableLiveData<TopMovie>() }
     val loadError by lazy { MutableLiveData<Boolean>() }
     val loading by lazy { MutableLiveData<Boolean>() }
 
@@ -46,7 +47,7 @@ class Top250MoviesViewModel(application: Application): AndroidViewModel(applicat
 
     private var iniected = false
 
-    fun refresh(){
+    fun getData(){
         inject()
         loading.value = true
 
@@ -59,10 +60,10 @@ class Top250MoviesViewModel(application: Application): AndroidViewModel(applicat
             apiService.getTop250Movies(apiKey)
                 .subscribeOn(Schedulers.newThread())
                 .observeOn(AndroidSchedulers.mainThread())
-                .subscribeWith(object: DisposableSingleObserver<NewMovie>(){
-                    override fun onSuccess(newMovie: NewMovie) {
+                .subscribeWith(object: DisposableSingleObserver<TopMovie>(){
+                    override fun onSuccess(topMovie: TopMovie) {
                         loadError.value = false
-                        movieDataList.value = newMovie
+                        movieDataList.value = topMovie
                         loading.value = false
                     }
 

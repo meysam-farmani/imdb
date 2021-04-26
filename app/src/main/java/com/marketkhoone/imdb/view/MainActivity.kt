@@ -8,7 +8,7 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.google.gson.Gson
 import com.marketkhoone.imdb.R
-import com.marketkhoone.imdb.model.NewMovieItems
+import com.marketkhoone.imdb.model.entity.NewMovieItem
 import com.marketkhoone.imdb.view.menu.MenuAdapter
 import com.marketkhoone.imdb.view.menu.views.DuoDrawerLayout
 import com.marketkhoone.imdb.view.menu.views.DuoMenuView
@@ -58,6 +58,10 @@ class MainActivity : AppCompatActivity() , DuoMenuView.OnMenuClickListener {
 
             supportFragmentManager.popBackStack()
         }
+
+        searchButton.setOnClickListener {
+            navigateToSearchActivity()
+        }
     }
 
     private fun handleDrawer() {
@@ -84,18 +88,16 @@ class MainActivity : AppCompatActivity() , DuoMenuView.OnMenuClickListener {
         if (addToBackStack) {
             transaction.addToBackStack(null)
         }
-        transaction.add(R.id.container, fragment).commit()
+        transaction.replace(R.id.container, fragment).commit()
     }
 
-    private fun goToMovieBookingFragment(fragment: Fragment, newMovieItem: NewMovieItems) {
+    private fun goToMovieBookingFragment(fragment: Fragment, id: String?) {
         val transaction = supportFragmentManager.beginTransaction()
 
         transaction.addToBackStack(null)
 
-        val gson = Gson()
         val parameters = Bundle()
-        val json: String = gson.toJson(newMovieItem)
-        parameters.putString("NewMovieItem", json)
+        parameters.putString("ImdbId", id)
         fragment.setArguments(parameters)
 
         transaction.add(R.id.container, fragment).commit()
@@ -116,7 +118,10 @@ class MainActivity : AppCompatActivity() , DuoMenuView.OnMenuClickListener {
         // Set the right options selected
         mMenuAdapter?.setViewSelected(position, true)
         when (position) {
-//            else -> goToFragment(MainFragment(), false)
+            0 -> goToFragment(TheatersFragment(), false)
+            1 -> goToFragment(TopFragment(), false)
+            2 -> goToFragment(PopularFragment(), false)
+            else -> goToFragment(TheatersFragment(), false)
         }
 
         // Close the drawer
@@ -133,19 +138,25 @@ class MainActivity : AppCompatActivity() , DuoMenuView.OnMenuClickListener {
         }
     }
 
-    fun navigateToMovieBookingFragment(newMovieItem: NewMovieItems) {
+    fun navigateToMovieBookingFragment(id: String?) {
         menuButton.visibility = View.GONE
         backButton.visibility = View.VISIBLE
         searchButton.visibility = View.GONE
         lastTitle = mainTitle.text.toString()
         mainTitle.text = "Movie Booking"
-        goToMovieBookingFragment(MovieBookingFragment(), newMovieItem)
+        goToMovieBookingFragment(MovieBookingFragment(), id)
     }
 
     fun showVideo(videoId: String?){
         val intent = Intent(this, VideoActivity::class.java)
         intent.putExtra("VideoId", videoId)
+        intent.putExtra("isFromMainActivity", true)
         startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
+    }
+
+    fun navigateToSearchActivity() {
+        val searchActivity = Intent(this, SearchActivity::class.java)
+        startActivity(searchActivity)
     }
 }

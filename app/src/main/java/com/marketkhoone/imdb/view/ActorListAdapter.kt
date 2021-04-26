@@ -1,16 +1,14 @@
 package com.marketkhoone.imdb.view
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.marketkhoone.imdb.R
 import com.marketkhoone.imdb.databinding.ItemActorBinding
-import com.marketkhoone.imdb.model.Actors
+import com.marketkhoone.imdb.model.entity.Actor
 
-class ActorListAdapter(private  val actorList: ArrayList<Actors>):
+class ActorListAdapter(private  val actorList: ArrayList<Actor>):
     RecyclerView.Adapter<ActorListAdapter.AnimalViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AnimalViewHolder {
@@ -19,7 +17,7 @@ class ActorListAdapter(private  val actorList: ArrayList<Actors>):
         return AnimalViewHolder(view)
     }
 
-    fun updateActorList(newActorList: List<Actors>){
+    fun updateActorList(newActorList: List<Actor>){
         actorList.clear()
         actorList.addAll(newActorList)
         notifyDataSetChanged()

@@ -6,12 +6,8 @@
     <data>
 
         <variable
-            name="newMovieItem"
-            type="com.marketkhoone.imdb.model.NewMovieItems" />
-
-        <variable
-            name="trailer"
-            type="com.marketkhoone.imdb.model.ImdbTrailer" />
+            name="movieTitle"
+            type="com.marketkhoone.imdb.model.entity.MovieTitle" />
 
     </data>
 
@@ -22,6 +18,7 @@
         tools:context=".view.MovieBookingFragment">
 
         <ScrollView
+            android:id="@+id/movieBookongLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -51,13 +48,12 @@
                     android:layout_centerHorizontal="true"
                     android:layout_marginStart="18dp"
                     android:layout_marginTop="12dp"
-                    android:imageUrl="@{newMovieItem.image}"
+                    android:imageUrl="@{movieTitle.image}"
                     android:scaleType="centerCrop"
                     app:layout_constraintDimensionRatio="0.675"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearanceOverlay="@style/pagerCardsCorner"
-                    app:srcCompat="@drawable/test2" />
+                    app:shapeAppearanceOverlay="@style/pagerCardsCorner" />
 
                 <TextView
                     android:id="@+id/nameMovieBooking"
@@ -66,7 +62,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="52dp"
                     android:layout_marginEnd="18dp"
-                    android:text="@{newMovieItem.title}"
+                    android:text="@{movieTitle.title}"
                     android:textColor="@color/title"
                     android:textSize="22dp"
                     android:textStyle="bold"
@@ -81,7 +77,7 @@
                     android:layout_marginStart="12dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="18dp"
-                    android:text="@{newMovieItem.runtimeStr}"
+                    android:text="@{movieTitle.runtimeStr}"
                     android:textColor="@color/text2"
                     android:textSize="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -94,7 +90,7 @@
                     android:layout_height="20dp"
                     android:layout_marginStart="12dp"
                     android:layout_marginEnd="18dp"
-                    android:text="@{newMovieItem.releaseState}"
+                    android:text="@{movieTitle.releaseDate}"
                     android:textColor="@color/text2"
                     android:textSize="12dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -125,6 +121,33 @@
                     app:srb_stepSize="0.5" />
 
                 <TextView
+                    android:id="@+id/imdbRateMovieBooking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:rateText="@{movieTitle.imDbRating}"
+                    android:textColor="@color/title"
+                    android:gravity="center"
+                    android:textSize="12dp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toEndOf="@+id/simpleRatingBar"
+                    app:layout_constraintTop_toBottomOf="@+id/releaseStateMovieBooking" />
+
+                <TextView
+                    android:id="@+id/imdbRateVotesMovieBooking"
+                    android:layout_width="wrap_content"
+                    android:layout_height="16dp"
+                    android:layout_marginStart="12dp"
+                    android:layout_marginTop="4dp"
+                    android:voteText="@{movieTitle.imDbRatingVotes}"
+                    android:gravity="center"
+                    android:textColor="@color/main"
+                    android:textSize="12dp"
+                    app:layout_constraintStart_toEndOf="@+id/imdbRateMovieBooking"
+                    app:layout_constraintTop_toBottomOf="@+id/releaseStateMovieBooking" />
+
+                <TextView
                     android:id="@+id/plotMovieBookingTitle"
                     android:layout_width="wrap_content"
                     android:layout_height="32dp"
@@ -146,7 +169,7 @@
                     android:layout_marginEnd="18dp"
                     android:lineSpacingExtra="6dp"
                     android:inputType="textMultiLine"
-                    android:text="@{newMovieItem.plot}"
+                    android:text="@{movieTitle.plot}"
                     android:textColor="@color/text2"
                     android:textSize="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -175,7 +198,7 @@
                     android:layout_marginEnd="18dp"
                     android:lineSpacingExtra="6dp"
                     android:inputType="textMultiLine"
-                    android:directorListToString="@{newMovieItem.directorList}"
+                    android:directorListToString="@{movieTitle.directorList}"
                     android:textColor="@color/text2"
                     android:textSize="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -204,7 +227,7 @@
                     android:layout_marginEnd="18dp"
                     android:lineSpacingExtra="6dp"
                     android:inputType="textMultiLine"
-                    android:genreListToString="@{newMovieItem.genreList}"
+                    android:genreListToString="@{movieTitle.genreList}"
                     android:textColor="@color/text2"
                     android:textSize="14dp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -240,14 +263,13 @@
                         android:layout_centerHorizontal="true"
                         android:layout_marginStart="18dp"
                         android:layout_marginEnd="18dp"
-                        android:imageUrl="@{trailer.thumbnailUrl}"
+                        android:imageUrl="@{movieTitle.trailer.thumbnailUrl}"
                         android:scaleType="centerCrop"
                         app:layout_constraintDimensionRatio="1.78"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent"
-                        app:shapeAppearanceOverlay="@style/pagerCardsCorner"
-                        app:srcCompat="@drawable/test3" />
+                        app:shapeAppearanceOverlay="@style/pagerCardsCorner" />
 
                     <ImageView
                         android:layout_width="60dp"
@@ -285,5 +307,41 @@
                     app:layout_constraintTop_toBottomOf="@+id/castMovieBookingTitle" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
+
+        <TextView
+            android:id="@+id/listErrorMovieBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="An Error occurred while loading data"
+            android:textColor="@color/main"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/retryMovieBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:visibility="gone"
+            android:text="Retry"
+            style="@style/AppTheme.RoundedCornerMaterialButton"
+            app:backgroundTint="@color/main"
+            android:textColor="@color/background"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/listErrorMovieBooking" />
+
+        <ProgressBar
+            android:id="@+id/loadingViewMovieBooking"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

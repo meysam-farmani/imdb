@@ -1,7 +1,6 @@
 package com.marketkhoone.imdb.view
 
 import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -10,30 +9,30 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
-import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import com.marketkhoone.imdb.R
 import com.marketkhoone.imdb.databinding.FragmentMovieBookingBinding
-import com.marketkhoone.imdb.model.*
-import com.marketkhoone.imdb.viewmodel.FullCastViewModel
-import com.marketkhoone.imdb.viewmodel.InTheatersViewModel
-import com.marketkhoone.imdb.viewmodel.TrailerViewModel
+import com.marketkhoone.imdb.model.entity.MovieTitle
+import com.marketkhoone.imdb.model.entity.NewMovie
+import com.marketkhoone.imdb.model.entity.NewMovieItem
+import com.marketkhoone.imdb.model.entity.YouTubeTrailer
+import com.marketkhoone.imdb.viewmodel.TitleMovieViewModel
 import com.marketkhoone.imdb.viewmodel.YouTubeTrailerViewModel
-import kotlinx.android.synthetic.main.fragment_in_theaters.*
+import kotlinx.android.synthetic.main.fragment_coming_soon.*
 import kotlinx.android.synthetic.main.fragment_movie_booking.*
 
 class MovieBookingFragment : Fragment() {
 
-    var newMovieItem: NewMovieItems? = null
+    var imdbId: String? = null
+    var isFromMainActivity: Boolean = true
     var videoId: String? = null
     private lateinit var dataBinding: FragmentMovieBookingBinding
     private val actorListAdapter = ActorListAdapter(arrayListOf())
 
-    private lateinit var fullCastViewModel: FullCastViewModel
     private lateinit var youTubeTrailerViewModel: YouTubeTrailerViewModel
-    private lateinit var trailerViewModel: TrailerViewModel
+    private lateinit var titleMovieViewModel: TitleMovieViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,60 +47,41 @@ class MovieBookingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         arguments?.let {
-            val gson = Gson()
-
-            val typeMovieItem = object : TypeToken<NewMovieItems>() {}.type
-            newMovieItem = gson.fromJson<NewMovieItems>(
-                it.getString(
-                    "NewMovieItem",
-                    ""
-                ), typeMovieItem
-            )
+            imdbId = it.getString("ImdbId")
+            isFromMainActivity = it.getBoolean("isFromMainActivity", false)
         }
-
-        dataBinding.newMovieItem = newMovieItem
 
         actorListMovieBooking.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
             adapter = actorListAdapter
         }
 
-        fullCastViewModel = ViewModelProviders.of(this).get(FullCastViewModel::class.java)
-        fullCastViewModel.fullCastData.observe(viewLifecycleOwner,fullCastDataObserver)
-        fullCastViewModel.loading.observe(viewLifecycleOwner,fullCastLoadingLiveDataObserver)
-        fullCastViewModel.loadError.observe(viewLifecycleOwner,fullCastErrorLiveDataObsever)
-        fullCastViewModel.getData(newMovieItem?.id)
+        titleMovieViewModel = ViewModelProviders.of(this).get(TitleMovieViewModel::class.java)
+        titleMovieViewModel.movieData.observe(viewLifecycleOwner,trailerDataObserver)
+        titleMovieViewModel.loading.observe(viewLifecycleOwner,movieTitleLoadingLiveDataObserver)
+        titleMovieViewModel.loadError.observe(viewLifecycleOwner,movieTitleErrorLiveDataObsever)
+        titleMovieViewModel.getData(imdbId)
 
         youTubeTrailerViewModel = ViewModelProviders.of(this).get(YouTubeTrailerViewModel::class.java)
         youTubeTrailerViewModel.youTubeTrailerData.observe(viewLifecycleOwner,youTubeTrailerDataObserver)
         youTubeTrailerViewModel.loading.observe(viewLifecycleOwner,youTubeTrailerLoadingLiveDataObserver)
         youTubeTrailerViewModel.loadError.observe(viewLifecycleOwner,youTubeTrailerErrorLiveDataObsever)
-        youTubeTrailerViewModel.getData(newMovieItem?.id)
-
-        trailerViewModel = ViewModelProviders.of(this).get(TrailerViewModel::class.java)
-        trailerViewModel.trailerData.observe(viewLifecycleOwner,trailerDataObserver)
-        trailerViewModel.loading.observe(viewLifecycleOwner,trailerLoadingLiveDataObserver)
-        trailerViewModel.loadError.observe(viewLifecycleOwner,trailerErrorLiveDataObsever)
-        trailerViewModel.getData(newMovieItem?.id)
+        youTubeTrailerViewModel.getData(imdbId)
 
         trailerMovieBooking.setOnClickListener {
             val activity = context as Activity
-            (activity as MainActivity).showVideo(videoId)
-        }
-    }
 
-    private val fullCastDataObserver = Observer<FullCast> { fullCast ->
-        fullCast?.let {
-            it.actors?.let{ actors ->
-                actorListAdapter.updateActorList(actors)
+            if(isFromMainActivity){
+                (activity as MainActivity).showVideo(videoId)
+            }else{
+                (activity as SearchActivity).showVideo(videoId)
             }
         }
-    }
 
-    private val fullCastLoadingLiveDataObserver = Observer<Boolean> { isLoading ->
-    }
-
-    private val fullCastErrorLiveDataObsever = Observer<Boolean> { isError ->
+        retryMovieBooking.setOnClickListener{
+            titleMovieViewModel.getData(imdbId)
+            youTubeTrailerViewModel.getData(imdbId)
+        }
     }
 
     private val youTubeTrailerDataObserver = Observer<YouTubeTrailer> { youTubeTrailer ->
@@ -116,15 +96,38 @@ class MovieBookingFragment : Fragment() {
     private val youTubeTrailerErrorLiveDataObsever = Observer<Boolean> { isError ->
     }
 
-    private val trailerDataObserver = Observer<ImdbTrailer> { trailer ->
-        trailer?.let {
-            dataBinding.trailer = it
+    private val trailerDataObserver = Observer<MovieTitle> { movieTitle ->
+        movieTitle?.let {
+            movieBookongLayout.visibility = View.VISIBLE
+
+            it.imDbRating?.let { rate ->
+                if(rate == ""){
+                    simpleRatingBar.rating = 0f
+                }else{
+                    simpleRatingBar.rating = rate.toFloat() / 2
+                }
+            }
+
+            dataBinding.movieTitle = it
+
+            it.actorList?.let{ actros ->
+                actorListAdapter.updateActorList(actros)
+            }
         }
     }
 
-    private val trailerLoadingLiveDataObserver = Observer<Boolean> { isLoading ->
+    private val movieTitleLoadingLiveDataObserver = Observer<Boolean> { isLoading ->
+        loadingViewMovieBooking.visibility = if (isLoading) View.VISIBLE else View.GONE
+
+        if(isLoading){
+            listErrorMovieBooking.visibility = View.GONE
+            retryMovieBooking.visibility = View.GONE
+            movieBookongLayout.visibility = View.GONE
+        }
     }
 
-    private val trailerErrorLiveDataObsever = Observer<Boolean> { isError ->
+    private val movieTitleErrorLiveDataObsever = Observer<Boolean> { isError ->
+        listErrorMovieBooking.visibility = if (isError) View.VISIBLE else View.GONE
+        retryMovieBooking.visibility = if (isError) View.VISIBLE else View.GONE
     }
 }

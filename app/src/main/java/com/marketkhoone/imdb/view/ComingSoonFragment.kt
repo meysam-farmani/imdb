@@ -1,5 +1,6 @@
 package com.marketkhoone.imdb.view
 
+import android.app.Activity
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,8 +9,8 @@ import android.view.ViewGroup
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.marketkhoone.imdb.R
-import com.marketkhoone.imdb.model.NewMovieItems
-import com.marketkhoone.imdb.model.NewMovie
+import com.marketkhoone.imdb.model.entity.NewMovieItem
+import com.marketkhoone.imdb.model.entity.NewMovie
 import com.marketkhoone.imdb.viewmodel.ComingSoonViewModel
 import kotlinx.android.synthetic.main.fragment_coming_soon.*
 
@@ -40,10 +41,10 @@ class ComingSoonFragment : Fragment(), PagerCardsListAdapter.ClickListener {
         viewModel.movieDataList.observe(viewLifecycleOwner,movieDataListDataObserver)
         viewModel.loading.observe(viewLifecycleOwner,loadingLiveDataObserver)
         viewModel.loadError.observe(viewLifecycleOwner,errorLiveDataObsever)
-        viewModel.refresh()
+        viewModel.getData()
 
         retryComingSoon.setOnClickListener{
-            viewModel.refresh()
+            viewModel.getData()
         }
 
     }
@@ -73,6 +74,8 @@ class ComingSoonFragment : Fragment(), PagerCardsListAdapter.ClickListener {
     }
 
 
-    override fun onClickListener(movieItem: NewMovieItems) {
+    override fun onClickListener(id: String?) {
+        val activity = context as Activity
+        (activity as MainActivity).navigateToMovieBookingFragment(id)
     }
 }

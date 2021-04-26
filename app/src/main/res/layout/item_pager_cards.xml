@@ -6,7 +6,7 @@
     <data>
         <variable
             name="movieItem"
-            type="com.marketkhoone.imdb.model.NewMovieItems" />
+            type="com.marketkhoone.imdb.model.entity.NewMovieItem" />
 
         <variable
             name="listener"
@@ -45,8 +45,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:shapeAppearanceOverlay="@style/pagerCardsCorner"
-            app:srcCompat="@drawable/test2" />
+            app:shapeAppearanceOverlay="@style/pagerCardsCorner" />
 
         <TextView
             android:id="@+id/name"

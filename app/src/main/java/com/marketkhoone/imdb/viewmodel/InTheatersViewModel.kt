@@ -1,6 +1,6 @@
 package com.marketkhoone.imdb.viewmodel
 
-import com.marketkhoone.imdb.model.NewMovie
+import com.marketkhoone.imdb.model.entity.NewMovie
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
@@ -46,7 +46,7 @@ class InTheatersViewModel(application: Application): AndroidViewModel(applicatio
 
     private var iniected = false
 
-    fun refresh(){
+    fun getData(){
         inject()
         loading.value = true
 

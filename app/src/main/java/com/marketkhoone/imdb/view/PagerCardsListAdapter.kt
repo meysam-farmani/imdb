@@ -7,16 +7,16 @@ import androidx.databinding.DataBindingUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.marketkhoone.imdb.R
 import com.marketkhoone.imdb.databinding.ItemPagerCardsBinding
-import com.marketkhoone.imdb.model.NewMovieItems
+import com.marketkhoone.imdb.model.entity.NewMovieItem
 
-class PagerCardsListAdapter(private  val newMovieItemList: ArrayList<NewMovieItems>, private val listener: ClickListener):
+class PagerCardsListAdapter(private  val newMovieItemList: ArrayList<NewMovieItem>, private val listener: ClickListener):
     RecyclerView.Adapter<PagerCardsListAdapter.PagerCardsViewHolder>(), PagerCardsClickListener {
 
     interface ClickListener {
-        fun onClickListener(newMovieItem: NewMovieItems)
+        fun onClickListener(id: String?)
     }
 
-    fun updatePagerCardsList(newMovieItems: List<NewMovieItems>){
+    fun updatePagerCardsList(newMovieItems: List<NewMovieItem>){
         newMovieItemList.clear()
         newMovieItemList.addAll(newMovieItems)
         notifyDataSetChanged()
@@ -43,7 +43,7 @@ class PagerCardsListAdapter(private  val newMovieItemList: ArrayList<NewMovieIte
     override fun onClick(v: View) {
         for(newMovieItem in newMovieItemList){
             if(v.tag == newMovieItem.id){
-                listener.onClickListener(newMovieItem)
+                listener.onClickListener(newMovieItem.id)
             }
         }
     }

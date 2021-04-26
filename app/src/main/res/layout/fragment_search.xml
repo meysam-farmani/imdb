@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/searchFragmentLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/background"
+    tools:context=".view.SearchFragment">
+
+    <EditText
+        android:id="@+id/expressionSearchTitle"
+        android:layout_width="0dp"
+        android:layout_height="56dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="18dp"
+        android:paddingStart="12dp"
+        android:paddingEnd="66dp"
+        android:imeOptions="actionSearch"
+        android:inputType="text"
+        android:hint="Search..."
+        android:textColorHint="@color/background2"
+        android:background="@drawable/shape_search"
+        android:textColor="@color/title"
+        android:textSize="18dp"
+        android:drawableTint="@color/title"
+        android:paddingRight="18dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/searchButtonSearchTitle"
+        android:layout_width="42dp"
+        android:layout_height="42dp"
+        android:layout_marginTop="11dp"
+        android:layout_marginEnd="31dp"
+        android:background="@color/background"
+        android:src="@drawable/ic_find_search_seo_view_zoom"
+        android:tint="@color/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/movieListSearch"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:visibility="gone"
+        android:layout_marginTop="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expressionSearchTitle" />
+
+    <TextView
+        android:id="@+id/listErrorSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="An Error occurred while loading data"
+        android:textColor="@color/main"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/listEmptySearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No result to show"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/loadingViewSearch"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

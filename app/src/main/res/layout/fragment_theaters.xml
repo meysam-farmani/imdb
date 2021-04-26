@@ -5,10 +5,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/background"
     tools:context=".view.TheatersFragment">
 
     <com.ogaclejapan.smarttablayout.SmartTabLayout
-        android:id="@id/viewpagertab"
+        android:id="@id/viewPagerTabTheaters"
         android:layout_width="match_parent"
         android:layout_height="48dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,14 +26,14 @@
         app:stl_underlineThickness="1dp" />
 
     <com.marketkhoone.imdb.view.MyViewPager
-        android:id="@+id/viewpager"
+        android:id="@+id/viewPagerTheaters"
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:layout_below="@id/viewpagertab"
+        android:layout_below="@id/viewPagerTabTheaters"
         android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/viewpagertab" />
+        app:layout_constraintTop_toBottomOf="@+id/viewPagerTabTheaters" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

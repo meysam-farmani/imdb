@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="boxOfficeMovie"
+            type="com.marketkhoone.imdb.model.entity.BoxOfficeMovieItem" />
+
+        <variable
+            name="listener"
+            type="com.marketkhoone.imdb.view.BoxOfficeMovieClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:onClick="@{listener.onClick}"
+        android:tag="@{boxOfficeMovie.id}"
+        android:background="@color/background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/shape_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imageBoxOfficeMovieItem"
+                android:layout_width="106dp"
+                android:layout_height="158dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:imageUrl="@{boxOfficeMovie.image}"
+                android:scaleType="centerCrop"
+                app:layout_constraintDimensionRatio="0.675"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/pagerCardsCorner" />
+
+            <TextView
+                android:id="@+id/titleBoxOfficeMovieItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:gravity="left"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="2dp"
+                android:text="@{boxOfficeMovie.title}"
+                android:textColor="@color/title"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imageBoxOfficeMovieItem"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/weekendBoxOfficeMovieItemTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:lineSpacingExtra="6dp"
+                android:text="weekend:"
+                android:textColor="@color/text2"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageBoxOfficeMovieItem"
+                app:layout_constraintTop_toBottomOf="@+id/titleBoxOfficeMovieItem" />
+
+            <TextView
+                android:id="@+id/weekendBoxOfficeMovieItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:lineSpacingExtra="6dp"
+                android:text="@{boxOfficeMovie.weekend}"
+                android:textColor="@color/text2"
+                android:textSize="14dp"
+                app:layout_constraintStart_toEndOf="@+id/weekendBoxOfficeMovieItemTitle"
+                app:layout_constraintTop_toBottomOf="@+id/titleBoxOfficeMovieItem" />
+
+            <TextView
+                android:id="@+id/grossBoxOfficeMovieItemTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:lineSpacingExtra="6dp"
+                android:text="gross:"
+                android:textColor="@color/text2"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageBoxOfficeMovieItem"
+                app:layout_constraintTop_toBottomOf="@+id/weekendBoxOfficeMovieItemTitle" />
+
+            <TextView
+                android:id="@+id/grossBoxOfficeMovieItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:lineSpacingExtra="6dp"
+                android:text="@{boxOfficeMovie.gross}"
+                android:textColor="@color/text2"
+                android:textSize="14dp"
+                app:layout_constraintStart_toEndOf="@+id/grossBoxOfficeMovieItemTitle"
+                app:layout_constraintTop_toBottomOf="@+id/weekendBoxOfficeMovieItemTitle" />
+
+            <TextView
+                android:id="@+id/weeksBoxOfficeMovieItemTitle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:lineSpacingExtra="6dp"
+                android:text="week:"
+                android:textColor="@color/text2"
+                android:textSize="14dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/imageBoxOfficeMovieItem"
+                app:layout_constraintTop_toBottomOf="@+id/grossBoxOfficeMovieItemTitle" />
+
+            <TextView
+                android:id="@+id/weeksBoxOfficeMovieItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:lineSpacingExtra="6dp"
+                android:text="@{boxOfficeMovie.weeks}"
+                android:textColor="@color/text2"
+                android:textSize="14dp"
+                app:layout_constraintStart_toEndOf="@+id/weeksBoxOfficeMovieItemTitle"
+                app:layout_constraintTop_toBottomOf="@+id/grossBoxOfficeMovieItemTitle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/circle_shape"
+            android:gravity="center"
+            android:text="@{boxOfficeMovie.rank}"
+            android:textColor="@color/background"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="24dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/circle_bottom_shape"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="24dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="136dp"
+            android:background="@drawable/circle_top_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

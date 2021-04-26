@@ -1,9 +1,9 @@
 package com.marketkhoone.imdb.util
 
+import android.app.Activity
 import android.content.Context
-import android.graphics.Color
-import android.graphics.PorterDuff
-import android.graphics.drawable.Drawable
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.databinding.BindingAdapter
@@ -12,13 +12,8 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.bumptech.glide.request.RequestOptions
 import com.marketkhoone.imdb.R
-import com.marketkhoone.imdb.model.DirectorList
-import com.marketkhoone.imdb.model.GenreList
-import com.marketkhoone.imdb.model.JobItems
-import com.marketkhoone.imdb.view.menu.widgets.T
-import java.text.SimpleDateFormat
-import java.util.*
-import kotlin.collections.ArrayList
+import com.marketkhoone.imdb.model.entity.Director
+import com.marketkhoone.imdb.model.entity.Genre
 
 fun getProgressDrawable(context: Context): CircularProgressDrawable {
 
@@ -48,7 +43,7 @@ fun loadImage(view: ImageView, url: String?){
 }
 
 @BindingAdapter("android:runtimeMins", "android:releaseState", "android:year")
-fun setTextRuntimeAndRelease(view: TextView, runtimeMins: Int?, releaseState : String?, year: Int?){
+fun setTextRuntimeAndRelease(view: TextView, runtimeMins: String?, releaseState : String?, year: String?){
     runtimeMins?.let {
 
         val string = "${runtimeMins} Minutes - ${releaseState} ${year}"
@@ -57,7 +52,7 @@ fun setTextRuntimeAndRelease(view: TextView, runtimeMins: Int?, releaseState : S
 }
 
 @BindingAdapter("android:directorListToString")
-fun directorListToString(view: TextView, list: List<DirectorList>?){
+fun directorListToString(view: TextView, list: List<Director>?){
     list?.let {
         val stringList = list.map { it.name }
         var string = stringList.joinToString(separator = "  |  ")
@@ -66,10 +61,39 @@ fun directorListToString(view: TextView, list: List<DirectorList>?){
 }
 
 @BindingAdapter("android:genreListToString")
-fun genreListToString(view: TextView, list: List<GenreList>?){
+fun genreListToString(view: TextView, list: List<Genre>?){
     list?.let {
         val stringList = list.map { it.value }
         var string = stringList.joinToString(separator = "  |  ")
         view.setText(string)
+    }
+}
+
+@BindingAdapter("android:rateText")
+fun rateText(view: TextView, rate: String?){
+    rate?.let {
+        if(it == ""){
+            view.setText("0")
+        }else{
+            view.setText(rate)
+        }
+    }
+}
+
+@BindingAdapter("android:voteText")
+fun voteText(view: TextView, vote: String?){
+    vote?.let {
+        if(it == ""){
+            view.setText("(0)")
+        }else{
+            view.setText("($vote)")
+        }
+    }
+}
+
+@BindingAdapter("android:getYearFromDescription")
+fun getYear(view: TextView, description: String?){
+    description?.let {
+        view.setText(it.substring(1,5))
     }
 }

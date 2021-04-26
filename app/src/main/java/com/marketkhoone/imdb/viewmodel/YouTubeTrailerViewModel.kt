@@ -7,9 +7,8 @@ import com.marketkhoone.imdb.di.AppModule
 import com.marketkhoone.imdb.di.CONTEXT_APP
 import com.marketkhoone.imdb.di.DaggerViewModelComponent
 import com.marketkhoone.imdb.di.TypeOfContext
-import com.marketkhoone.imdb.model.FullCast
 import com.marketkhoone.imdb.model.ImdbApiService
-import com.marketkhoone.imdb.model.YouTubeTrailer
+import com.marketkhoone.imdb.model.entity.YouTubeTrailer
 import com.marketkhoone.imdb.util.SharedPreferencesHelper
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable

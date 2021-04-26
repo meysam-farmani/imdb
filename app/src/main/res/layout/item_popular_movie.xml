@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="popularMovie"
+            type="com.marketkhoone.imdb.model.entity.PopularMovieItem" />
+
+        <variable
+            name="listener"
+            type="com.marketkhoone.imdb.view.PopularMovieClickListener" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:onClick="@{listener.onClick}"
+        android:tag="@{popularMovie.id}"
+        android:background="@color/background">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginEnd="18dp"
+            android:background="@drawable/shape_menu"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/imagePopularMovieItem"
+                android:layout_width="106dp"
+                android:layout_height="158dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:imageUrl="@{popularMovie.image}"
+                android:scaleType="centerCrop"
+                android:src="@drawable/test2"
+                app:layout_constraintDimensionRatio="0.675"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:shapeAppearanceOverlay="@style/pagerCardsCorner" />
+
+            <TextView
+                android:id="@+id/titlePopularMovieItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:layout_marginEnd="24dp"
+                android:gravity="left"
+                android:inputType="textMultiLine"
+                android:lineSpacingExtra="2dp"
+                android:text="@{popularMovie.fullTitle}"
+                android:textColor="@color/title"
+                android:textSize="22dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/imagePopularMovieItem"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.willy.ratingbar.ScaleRatingBar
+                android:id="@+id/simpleRatingBarPopularMovieItem"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                app:layout_constraintStart_toEndOf="@+id/imagePopularMovieItem"
+                app:layout_constraintTop_toBottomOf="@+id/titlePopularMovieItem"
+                app:srb_clearRatingEnabled="true"
+                app:srb_clickable="false"
+                app:srb_drawableEmpty="@drawable/ic_star_empty"
+                app:srb_drawableFilled="@drawable/ic_star_filled"
+                app:srb_isIndicator="false"
+                app:srb_minimumStars="0"
+                app:srb_numStars="5"
+                app:srb_rating="0"
+                app:srb_scrollable="false"
+                app:srb_starHeight="12dp"
+                app:srb_starPadding="2dp"
+                app:srb_starWidth="12dp"
+                app:srb_stepSize="0.5" />
+
+            <TextView
+                android:id="@+id/imdbRatePopularMovieItem"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:rateText="@{popularMovie.imDbRating}"
+                android:text="7.2"
+                android:textColor="@color/title"
+                android:textSize="12dp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toEndOf="@+id/simpleRatingBarPopularMovieItem"
+                app:layout_constraintTop_toBottomOf="@+id/titlePopularMovieItem" />
+
+            <TextView
+                android:id="@+id/imdbRateVotesPopularMovieItem"
+                android:layout_width="wrap_content"
+                android:layout_height="16dp"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="12dp"
+                android:gravity="center"
+                android:text="(2256)"
+                android:textColor="@color/main"
+                android:textSize="12dp"
+                android:voteText="@{popularMovie.imDbRatingCount}"
+                app:layout_constraintStart_toEndOf="@+id/imdbRatePopularMovieItem"
+                app:layout_constraintTop_toBottomOf="@+id/titlePopularMovieItem" />
+
+            <TextView
+                android:id="@+id/releaseDatePopularMovieItem"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="12dp"
+                android:layout_marginBottom="12dp"
+                android:lineSpacingExtra="6dp"
+                android:text="@{popularMovie.year}"
+                android:textColor="@color/text2"
+                android:textSize="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:layout_width="42dp"
+            android:layout_height="42dp"
+            android:layout_marginTop="6dp"
+            android:layout_marginEnd="6dp"
+            android:background="@drawable/circle_shape"
+            android:gravity="center"
+            android:text="@{popularMovie.rank}"
+            android:textColor="@color/background"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/circle_shape"
+            android:gravity="center"
+            android:text="@{popularMovie.rankUpDown}"
+            android:textColor="@color/background"
+            android:textSize="14dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="24dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="136dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/circle_bottom_shape"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:layout_width="24dp"
+            android:layout_height="12dp"
+            android:layout_marginStart="136dp"
+            android:background="@drawable/circle_top_shape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

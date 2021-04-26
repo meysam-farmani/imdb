@@ -1,14 +1,11 @@
 package com.marketkhoone.imdb.model
 
+import com.marketkhoone.imdb.model.entity.*
 import io.reactivex.Single
 import retrofit2.http.GET
 import retrofit2.http.Path
 
 interface ImdbApi {
-
-    @GET("Top250Movies/{apiKey}")
-    fun getTop250Movies(
-        @Path("apiKey") apiKey: String): Single<NewMovie>
 
     @GET("InTheaters/{apiKey}")
     fun getInTheaters(
@@ -18,18 +15,38 @@ interface ImdbApi {
     fun getComingSoon(
         @Path("apiKey") apiKey: String): Single<NewMovie>
 
-    @GET("FullCast/{apiKey}/{imdbId}")
-    fun getFullCast(
-        @Path("apiKey") apiKey: String,
-        @Path("imdbId") imdbId: String?): Single<FullCast>
-
     @GET("YouTubeTrailer/{apiKey}/{imdbId}")
     fun getYouTubeTrailer(
         @Path("apiKey") apiKey: String,
         @Path("imdbId") imdbId: String?): Single<YouTubeTrailer>
 
-    @GET("Trailer/{apiKey}/{imdbId}")
-    fun getTrailer(
+    @GET("Title/{apiKey}/{imdbId}/Trailer")
+    fun getMovieTitle(
         @Path("apiKey") apiKey: String,
-        @Path("imdbId") imdbId: String?): Single<ImdbTrailer>
+        @Path("imdbId") imdbId: String?): Single<MovieTitle>
+
+    @GET("Top250Movies/{apiKey}")
+    fun getTop250Movies(
+        @Path("apiKey") apiKey: String): Single<TopMovie>
+
+    @GET("Top250TVs/{apiKey}")
+    fun getTop250TVs(
+        @Path("apiKey") apiKey: String): Single<TopMovie>
+
+    @GET("MostPopularMovies/{apiKey}")
+    fun getMostPopularMovies(
+        @Path("apiKey") apiKey: String): Single<PopularMovie>
+
+    @GET("MostPopularTVs/{apiKey}")
+    fun getMostPopularTVs(
+        @Path("apiKey") apiKey: String): Single<PopularMovie>
+
+    @GET("BoxOffice/{apiKey}")
+    fun getBoxOffice(
+        @Path("apiKey") apiKey: String): Single<BoxOfficeMovie>
+
+    @GET("SearchTitle/{apiKey}/{expression}")
+    fun getSearchTitle(
+        @Path("apiKey") apiKey: String,
+        @Path("expression") expression: String?): Single<SearchTitle>
 }
