@@ -15,7 +15,7 @@
   <img src="images/10.jpg" width="200">
 </p>
   
-  See also [IMDB App Video](https://youtu.be/O6BkpI67m40)
+  See also [IMDB App Video](https://youtu.be/agl2U7ui0FE)
 
 # Requirements
 - Android Studio 4.1.1
