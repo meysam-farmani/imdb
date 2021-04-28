@@ -48,7 +48,7 @@ class MovieBookingFragment : Fragment() {
 
         arguments?.let {
             imdbId = it.getString("ImdbId")
-            isFromMainActivity = it.getBoolean("isFromMainActivity", false)
+            isFromMainActivity = it.getBoolean("IsFromMainActivity")
         }
 
         actorListMovieBooking.apply {

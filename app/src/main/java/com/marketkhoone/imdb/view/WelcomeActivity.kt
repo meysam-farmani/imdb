@@ -27,6 +27,7 @@ class WelcomeActivity : AppCompatActivity() {
             .build()
             .inject(this)
 
+//        prefs.isFirstTimeLaunch = true
         if(!prefs.isFirstTimeLaunch){
             navigateToMainActivity()
         }

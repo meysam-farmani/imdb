@@ -47,6 +47,7 @@ class SearchActivity : AppCompatActivity() {
 
         val parameters = Bundle()
         parameters.putString("ImdbId", id)
+        parameters.putBoolean("IsFromMainActivity", false)
         fragment.setArguments(parameters)
 
         transaction.add(R.id.containerSearch, fragment).commit()
@@ -55,7 +56,6 @@ class SearchActivity : AppCompatActivity() {
     fun showVideo(videoId: String?){
         val intent = Intent(this, VideoActivity::class.java)
         intent.putExtra("VideoId", videoId)
-        intent.putExtra("isFromMainActivity", false)
         startActivity(intent)
         overridePendingTransition(android.R.anim.fade_in, android.R.anim.fade_out)
     }
