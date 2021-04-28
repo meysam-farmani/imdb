@@ -1,16 +1,24 @@
 package com.marketkhoone.imdb.model
 
+import android.app.Application
+import com.marketkhoone.imdb.di.ApiModule
+import com.marketkhoone.imdb.di.AppModule
 import com.marketkhoone.imdb.di.DaggerApiComponent
 import com.marketkhoone.imdb.model.entity.*
 import io.reactivex.Single
+import okhttp3.Response
 import javax.inject.Inject
 
-class ImdbApiService {
+class ImdbApiService(application: Application) {
     @Inject
     lateinit var api: ImdbApi
 
     init {
-        DaggerApiComponent.create().inject(this)
+//        DaggerApiComponent.create().inject(this)
+        DaggerApiComponent.builder()
+            .apiModule(ApiModule(application))
+            .build()
+            .inject(this)
     }
 
     fun getInTheaters(apiKey: String): Single<NewMovie> {

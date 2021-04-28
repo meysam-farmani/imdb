@@ -4,10 +4,7 @@ import com.marketkhoone.imdb.model.entity.NewMovie
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
-import com.marketkhoone.imdb.di.AppModule
-import com.marketkhoone.imdb.di.CONTEXT_APP
-import com.marketkhoone.imdb.di.DaggerViewModelComponent
-import com.marketkhoone.imdb.di.TypeOfContext
+import com.marketkhoone.imdb.di.*
 import com.marketkhoone.imdb.model.ImdbApiService
 import com.marketkhoone.imdb.model.entity.PopularMovie
 import com.marketkhoone.imdb.model.entity.SearchTitle
@@ -42,6 +39,7 @@ class SearchTitleViewModel(application: Application): AndroidViewModel(applicati
         if(!iniected){
             DaggerViewModelComponent.builder()
                 .appModule(AppModule(getApplication()))
+                .apiModule(ApiModule(getApplication()))
                 .build()
                 .inject(this)
         }

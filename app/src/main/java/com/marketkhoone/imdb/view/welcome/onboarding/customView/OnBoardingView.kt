@@ -11,10 +11,7 @@ import android.widget.FrameLayout
 import androidx.core.content.ContextCompat.startActivity
 import androidx.viewpager2.widget.ViewPager2
 import com.marketkhoone.imdb.R
-import com.marketkhoone.imdb.di.AppModule
-import com.marketkhoone.imdb.di.CONTEXT_APP
-import com.marketkhoone.imdb.di.DaggerViewModelComponent
-import com.marketkhoone.imdb.di.TypeOfContext
+import com.marketkhoone.imdb.di.*
 import com.marketkhoone.imdb.util.SharedPreferencesHelper
 import com.marketkhoone.imdb.view.MainActivity
 import com.marketkhoone.imdb.view.WelcomeActivity
@@ -47,6 +44,7 @@ constructor(
         addingButtonsClickListeners()
         DaggerViewModelComponent.builder()
             .appModule(AppModule(context.applicationContext as Application))
+            .apiModule(ApiModule(context.applicationContext as Application))
             .build()
             .inject(this)
     }

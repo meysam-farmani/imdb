@@ -4,10 +4,7 @@ import android.app.Application
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.marketkhoone.imdb.R
-import com.marketkhoone.imdb.di.AppModule
-import com.marketkhoone.imdb.di.CONTEXT_APP
-import com.marketkhoone.imdb.di.DaggerViewModelComponent
-import com.marketkhoone.imdb.di.TypeOfContext
+import com.marketkhoone.imdb.di.*
 import com.marketkhoone.imdb.util.SharedPreferencesHelper
 import kotlinx.android.synthetic.main.activity_video.*
 import javax.inject.Inject
@@ -25,6 +22,7 @@ class VideoActivity : AppCompatActivity() {
 
         DaggerViewModelComponent.builder()
             .appModule(AppModule(applicationContext as Application))
+            .apiModule(ApiModule(applicationContext as Application))
             .build()
             .inject(this)
 

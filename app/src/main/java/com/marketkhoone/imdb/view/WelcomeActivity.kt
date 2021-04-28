@@ -6,10 +6,7 @@ import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.marketkhoone.imdb.R
-import com.marketkhoone.imdb.di.AppModule
-import com.marketkhoone.imdb.di.CONTEXT_APP
-import com.marketkhoone.imdb.di.DaggerViewModelComponent
-import com.marketkhoone.imdb.di.TypeOfContext
+import com.marketkhoone.imdb.di.*
 import com.marketkhoone.imdb.util.SharedPreferencesHelper
 import javax.inject.Inject
 
@@ -26,6 +23,7 @@ class WelcomeActivity : AppCompatActivity() {
 
         DaggerViewModelComponent.builder()
             .appModule(AppModule(applicationContext as Application))
+            .apiModule(ApiModule(applicationContext as Application))
             .build()
             .inject(this)
 
