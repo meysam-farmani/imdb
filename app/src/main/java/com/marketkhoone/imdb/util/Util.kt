@@ -34,7 +34,7 @@ fun ImageView.loadImage(uri: String?, progressDrawable: CircularProgressDrawable
     Glide.with(context)
         .setDefaultRequestOptions(options)
         .load(uri)
-        .diskCacheStrategy(DiskCacheStrategy.DATA)
+        .diskCacheStrategy(DiskCacheStrategy.ALL)
         .transition(DrawableTransitionOptions.withCrossFade())
         .into(this)
 }
