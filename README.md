@@ -1,4 +1,4 @@
-# Weather App
+# IMDB App
 <p float="left">
   <img src="images/1.jpg" width="200">
   <img src="images/3.jpg" width="200">
